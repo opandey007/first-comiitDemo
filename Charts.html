@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Log Visualization</title>
+    <!-- <script src="https://d3js.org/d3.v5.min.js"></script> -->
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  </head>
+  <body>
+    <div
+      id="popup"
+      style="
+        display: none;
+        position: absolute;
+        background-color: #fff;
+        border: 1px solid #ccc;
+        padding: 10px;
+      "
+    ></div>
+
+    <script>
+      const data = {
+        status: 'success',
+        message: 'process_id:; null',
+        dataObj: {
+          data: [
+            {
+              component: '/na3/interaction_17.0',
+              logStream: 'int1014.na3.va2.livevox.net',
+              threadName: 'http-nio-8080-exec-514',
+              message: [
+                'Received request for template to inbound number redirect, with fromUser=+13233090653, toUser=+18339322075, sessionID=U89DDT654DF192@10.124.21.138, fromHeader=<sip:+13233090653@206.147.84.28:5060>;tag=gK0a0050bc, correlationId=null, callStartTime=1699606930, callIDHeader=510305825_133388867@206.147.84.28, toHeader=<sip:+18339322075@carrierinbound1.na3.va2.livevox.com>;tag=tlrx-7b, cName=null, webCallId=null, serviceId=null, agentId=null, webacallData=null, verification=TN-Validation-Passed',
+              ],
+              traceId: '1-654df192-dc4badf45862c1b56da57295',
+            },
+            {
+              component: '/na3/interaction_17.0',
+              logStream: 'int1022.na3.va2.livevox.net',
+              threadName: 'pool-21-thread-57',
+              message: ['158742250077 QueuerIncrement Task started execution'],
+              traceId: '1-654df192-406edb231603e471f2f5af50',
+            },
+            {
+              component: '/na3/interaction_17.0',
+              logStream: 'int1002.na3.va2.livevox.net',
+              threadName: 'http-nio-8080-exec-413',
+              message: [
+                'Received request to initiate conference for customer sessionId=U89DDT654DF192@10.124.21.138 , callerId=3233090653 , txnId=158742250077, account=, externalNumberToDial=8882675248, recordTransfer=0, campaingId=108667305, serviceId=126573, clientId=10900, acceptMsgCountToBridge= ',
+              ],
+              traceId: '1-654df193-2d1c3c25a55cc3df6298a870',
+            },
+            {
+              component: '/na3/interaction_17.0',
+              logStream: 'int1005.na3.va2.livevox.net',
+              threadName: 'http-nio-8080-exec-444',
+              message: [
+                'Launching operator call for debtor U89DDT654DF192@10.124.21.138 using URL http://media-5-alb.na3.livevox.net:8085/QuickConnect/?numberToDial=%2b18882675248&callerID=%2b13233090653&dialTimeout=45000&Carrier=lcr-operator&script=http://internal-interaction-17-alb-na3-1785459474.us-east-1.elb.amazonaws.com/interaction_17.0/services/call/subdialog/ConferenceOperatorCall&recordConference=false&campaign_id=108667305&account=&acceptMsgCountToBridge=&earlyMedia=true&min_duration=7000&debtorSessionID=U89DDT654DF192@10.124.21.138&whisperPrompt1=%257B%2522data%2522%253A%255B%2522%255D%257D&whisperPrompt2=%257B%2522data%2522%253A%255B%2522%255D%257D&ivrNavigation=&direct_bridge=true&client_id=126573&txnid=158742250077&is_vm_xfer=null&startTime=1699606930',
+              ],
+              traceId: '1-654df193-2d1c3c25a55cc3df6298a870',
+            },
+            {
+              component: '/na3/interaction_17.0',
+              logStream: 'int1024.na3.va2.livevox.net',
+              threadName: 'http-nio-8080-exec-410',
+              message: [
+                'GET /interaction_17.0/services/call/subdialog/ConferenceOperatorCall?QuickConnect=1&sessionID=U27DC0T654DF193%4010%2E124%2E21%2E202&callStartTime=1699606931&numberToDial=%2B18882675248&callerID=%2B13233090653&dialTimeout=45000&recordConference=false&campaign_id=108667305&account=&acceptMsgCountToBridge=&earlyMedia=true&min_duration=7000&debtorSessionID=U89DDT654DF192%4010%2E124%2E21%2E138&whisperPrompt1=%257B%2522data%2522%253A%255B%2522%255D%257D&whisperPrompt2=%257B%2522data%2522%253A%255B%2522%255D%257D&ivrNavigation=&direct_bridge=true&client_id=126573&txnid=158742250077&is_vm_xfer=null&startTime=1699606930&callIDHeader=654df193%2D0000%2D3805a86b%2Ddc965e38%2Dafa8ad62%4010%2E124%2E21%2E202&toHeader=sip%3A%2B18882675248%40sipdr%2Dsipcop%2Dprimary%2Dsip%2Eservice%2Ena3%2Elivevox%2Enet%3A5060%3Btag%3DgK08cafe5d&fromHeader=%3Csip%3A%2B13233090653%4010%2E124%2E21%2E202%3A5060%3E%3Btag%3Dtelstage%2D7d8a369d%2D654df193&carrier1=onvoy%2Dflatrate&carrier=lcr%2Doperator&sip_invite_time=%2D1200117787&ringingReceived=1&sip_ring_time=%2D1200115353&sip_connect_time=%2D1200113730&ringCount=0 HTTP/1.1',
+              ],
+              traceId: 'NO_TRACE_ID',
+            },
+            {
+              component: '/na3/interaction_17.0',
+              logStream: 'int1026.na3.va2.livevox.net',
+              threadName: 'http-nio-8080-exec-341',
+              message: [
+                'StartOp request received for client 126573 and txnid 158742250077',
+                'GET /interaction_17.0/StartOp?client%5Fid=126573&txnid=158742250077 HTTP/1.1',
+              ],
+              traceId: '1-654df197-d40581ada9fc662cc1e72fc3',
+            },
+            {
+              component: '/na3/interaction_17.0',
+              logStream: 'int1025.na3.va2.livevox.net',
+              threadName: 'http-nio-8080-exec-449',
+              message: [
+                'Received callback request for customer sessionId=U89DDT654DF192@10.124.21.138 , phoneNumber=3233090653 , txnId=158742250077 , account= , external sessionId=U27DC0T654DF193@10.124.21.202 , agent sessionId=U27DC0T654DF193@10.124.21.202 , serviceId=126573 , campaignId=108667305 , recordConference=false , startTime=1699606930 , sipStatus=200',
+                'Dispatching conference task => BridgeExternalConferenceTask, customerSessionId=U89DDT654DF192@10.124.21.138, customerPhoneNumber=3233090653, externalSessionId=U27DC0T654DF193@10.124.21.202',
+                'Initializing conference for customer sessionId=U89DDT654DF192@10.124.21.138 and external sessionId=U27DC0T654DF193@10.124.21.202',
+                'Add Conference URL API for customerSessionId U89DDT654DF192@10.124.21.138 and exteranal session ID U27DC0T654DF193@10.124.21.202 status code : 204',
+                'Conference for customer sessionId=U89DDT654DF192@10.124.21.138  external sessionId=U27DC0T654DF193@10.124.21.202 , created with url=http://10.124.25.81:8085/Conference/U27C4CT654DF197',
+                'Adding customer sessionId= U89DDT654DF192@10.124.21.138',
+                'Command(s) sent to conf url=http://10.124.25.81:8085/Conference/U27C4CT654DF197: <cmds><cmd id="1" name="PartyAdd"><param name="id" value="U89DDT654DF192"/><param name="SIPUri" value="sip:U89DDT654DF192@10.124.21.138"/><param name="type" value="Full"/><param name="addedAudio" value="http://audiopool/prompts/prompts1.2.2/system/beep.wav"/><param name="hangupAudio" value="http://audiopool/prompts/prompts1.2.2/system/callerdisconnecttone.wav"/><param name="blockAnnouncements" value="0"/><param name="synchronous" value="1"/><param name="notifyUrl" value="http://internal-interaction-17-alb-na3-1785459474.us-east-1.elb.amazonaws.com/interaction_17.0/conference/external/notification?customerSessionId=U89DDT654DF192@10.124.21.138&amp;externalSessionId=U27DC0T654DF193@10.124.21.202&amp;notifiedSessionId=U89DDT654DF192@10.124.21.138&amp;conferenceUrl=http%3A%2F%2F10.124.25.81%3A8085%2FConference%2FU27C4CT654DF197"/></cmd></cmds>',
+                'Conference initiated successfully for customer with sessionId=U89DDT654DF192@10.124.21.138',
+                'Bridging customer sessionId=U89DDT654DF192@10.124.21.138 with external sessionId= U27DC0T654DF193@10.124.21.202',
+                'Command(s) sent to conf url=http://10.124.25.81:8085/Conference/U27C4CT654DF197: <cmds><cmd id="1" name="PartyAdd"><param name="id" value="U27DC0T654DF193"/><param name="SIPUri" value="sip:U27DC0T654DF193@10.124.21.202"/><param name="type" value="Full"/><param name="blockAnnouncements" value="1"/><param name="synchronous" value="1"/><param name="notifyUrl" value="http://internal-interaction-17-alb-na3-1785459474.us-east-1.elb.amazonaws.com/interaction_17.0/conference/external/notification?customerSessionId=U89DDT654DF192@10.124.21.138&amp;externalSessionId=U27DC0T654DF193@10.124.21.202&amp;notifiedSessionId=U27DC0T654DF193@10.124.21.202&amp;conferenceUrl=http%3A%2F%2F10.124.25.81%3A8085%2FConference%2FU27C4CT654DF197"/></cmd></cmds>',
+              ],
+              traceId: '1-654df197-a65e376ee9e94a74283c6bf9',
+            },
+            {
+              component: '/na3/interaction_17.0',
+              logStream: 'int1014.na3.va2.livevox.net',
+              threadName: 'http-nio-8080-exec-393',
+              message: [
+                'Received request to notify party status for customer sessionId=U89DDT654DF192@10.124.21.138 , external sessionId=U27DC0T654DF193@10.124.21.202 , notified party sessionId=U89DDT654DF192@10.124.21.138 , conferenceUrl=http://10.124.25.81:8085/Conference/U27C4CT654DF197 , recordingBaseUrl=null recordingObjectId=null  and status=connected',
+                'GET /interaction_17.0/conference/external/notification?customerSessionId=U89DDT654DF192@10.124.21.138&externalSessionId=U27DC0T654DF193@10.124.21.202&notifiedSessionId=U89DDT654DF192@10.124.21.138&conferenceUrl=http%3A%2F%2F10.124.25.81%3A8085%2FConference%2FU27C4CT654DF197&status=connected HTTP/1.1',
+              ],
+              traceId: '1-654df197-145b392102a2f0aa9f823637',
+            },
+            {
+              component: '/na3/interaction_17.0',
+              logStream: 'int1025.na3.va2.livevox.net',
+              threadName: 'pool-17-thread-1431',
+              message: [
+                'Conference initiated successfully for external with sessionId=U89DDT654DF192@10.124.21.138',
+              ],
+              traceId: '1-654df197-a65e376ee9e94a74283c6bf9',
+            },
+            {
+              component: '/na3/interaction_17.0',
+              logStream: 'int1022.na3.va2.livevox.net',
+              threadName: 'http-nio-8080-exec-435',
+              message: [
+                'Received request to notify party status for customer sessionId=U89DDT654DF192@10.124.21.138 , external sessionId=U27DC0T654DF193@10.124.21.202 , notified party sessionId=U27DC0T654DF193@10.124.21.202 , conferenceUrl=http://10.124.25.81:8085/Conference/U27C4CT654DF197 , recordingBaseUrl=null recordingObjectId=null  and status=connected',
+                'GET /interaction_17.0/conference/external/notification?customerSessionId=U89DDT654DF192@10.124.21.138&externalSessionId=U27DC0T654DF193@10.124.21.202&notifiedSessionId=U27DC0T654DF193@10.124.21.202&conferenceUrl=http%3A%2F%2F10.124.25.81%3A8085%2FConference%2FU27C4CT654DF197&status=connected HTTP/1.1',
+              ],
+              traceId: '1-654df197-a265e966fe09e4b82636af5a',
+            },
+            {
+              component: '/na3/interaction_17.0',
+              logStream: 'int1013.na3.va2.livevox.net',
+              threadName: 'http-nio-8080-exec-465',
+              message: [
+                'Received request to notify party status for customer sessionId=U89DDT654DF192@10.124.21.138 , external sessionId=U27DC0T654DF193@10.124.21.202 , notified party sessionId=U27DC0T654DF193@10.124.21.202 , conferenceUrl=http://10.124.25.81:8085/Conference/U27C4CT654DF197 , recordingBaseUrl=null recordingObjectId=null  and status=hangup',
+                'Ending conference for customer sessionId=U89DDT654DF192@10.124.21.138 , external sessionId=U27DC0T654DF193@10.124.21.202, recording objectId=null',
+                'Ending call for sessionId=U89DDT654DF192@10.124.21.138 failed=false sipStatus=-1',
+                'URL = http://internal-interaction-17-alb-na3-1785459474.us-east-1.elb.amazonaws.com/interaction_17.0/services/call/subdialog/EndBridgeWaitCall?debtorSessionID=U89DDT654DF192@10.124.21.138&transfer_call_result=OperatorHangupWhileTalking',
+              ],
+              traceId: '1-654df270-4b2f8a85ca414f2e9e1e58ae',
+            },
+            {
+              component: '/na3/interaction_17.0',
+              logStream: 'int1016.na3.va2.livevox.net',
+              threadName: 'http-nio-8080-exec-407',
+              message: [
+                'Disconnecting call : U89DDT654DF192@10.124.21.138  using URL http://10.124.21.138:8085/QuickConnect/U89DDT654DF192@10.124.21.138?EndBridgeWait=yes&transferCallResult=OperatorHangupWhileTalking',
+                'Disconnecting call : U89DDT654DF192@10.124.21.138  using URL http://10.124.21.138:8085/QuickConnect/U89DDT654DF192@10.124.21.138?EndBridgeWait=yes&transferCallResult=OperatorHangupWhileTalking',
+              ],
+              traceId: '1-654df270-bb8ba249e682bd40e7371548',
+            },
+            {
+              component: '/na3/interaction_17.0',
+              logStream: 'int1013.na3.va2.livevox.net',
+              threadName: 'http-nio-8080-exec-367',
+              message: [
+                'EndOp request received for client 126573 and txnid 158742250077',
+                'Successfully ended call for sessionId=U89DDT654DF192@10.124.21.138',
+              ],
+              traceId: '1-654df270-ffd942a7d6047e95c5a5b83c',
+            },
+            {
+              component: '/na3/interaction_17.0',
+              logStream: 'int1016.na3.va2.livevox.net',
+              threadName: 'http-nio-8080-exec-439',
+              message: [
+                'GET /interaction_17.0/services/call/subdialog/EndBridgeWaitCall?debtorSessionID=U89DDT654DF192@10.124.21.138&transfer_call_result=OperatorHangupWhileTalking HTTP/1.1',
+              ],
+              traceId: 'NO_TRACE_ID',
+            },
+            {
+              component: '/na3/interaction_17.0',
+              logStream: 'int1025.na3.va2.livevox.net',
+              threadName: 'http-nio-8080-exec-393',
+              message: [
+                'Received request to notify party status for customer sessionId=U89DDT654DF192@10.124.21.138 , external sessionId=U27DC0T654DF193@10.124.21.202 , notified party sessionId=U89DDT654DF192@10.124.21.138 , conferenceUrl=http://10.124.25.81:8085/Conference/U27C4CT654DF197 , recordingBaseUrl=null recordingObjectId=null  and status=hangup',
+                'Ending conference for customer sessionId=U89DDT654DF192@10.124.21.138 , external sessionId=U27DC0T654DF193@10.124.21.202, recording objectId=null',
+                'Ending call for sessionId=U89DDT654DF192@10.124.21.138 failed=false sipStatus=-1',
+                'URL = http://internal-interaction-17-alb-na3-1785459474.us-east-1.elb.amazonaws.com/interaction_17.0/services/call/subdialog/EndBridgeWaitCall?debtorSessionID=U89DDT654DF192@10.124.21.138&transfer_call_result=OperatorHangupWhileTalking',
+              ],
+              traceId: '1-654df270-542f27b5043037737685631b',
+            },
+            {
+              component: '/na3/interaction_17.0',
+              logStream: 'int1013.na3.va2.livevox.net',
+              threadName: 'http-nio-8080-exec-367',
+              message: [
+                'GET /interaction_17.0/EndOp?client%5Fid=126573&txnid=158742250077 HTTP/1.1',
+              ],
+              traceId: 'NO_TRACE_ID',
+            },
+            {
+              component: '/na3/interaction_17.0',
+              logStream: 'int1026.na3.va2.livevox.net',
+              threadName: 'http-nio-8080-exec-477',
+              message: [
+                'Disconnecting call : U89DDT654DF192@10.124.21.138  using URL http://10.124.21.138:8085/QuickConnect/U89DDT654DF192@10.124.21.138?EndBridgeWait=yes&transferCallResult=OperatorHangupWhileTalking',
+                'GET /interaction_17.0/services/call/subdialog/EndBridgeWaitCall?debtorSessionID=U89DDT654DF192@10.124.21.138&transfer_call_result=OperatorHangupWhileTalking HTTP/1.1',
+              ],
+              traceId: '1-654df270-542f27b5043037737685631b',
+            },
+            {
+              component: '/na3/interaction_17.0',
+              logStream: 'int1025.na3.va2.livevox.net',
+              threadName: 'http-nio-8080-exec-393',
+              message: [
+                'Successfully ended call for sessionId=U89DDT654DF192@10.124.21.138',
+              ],
+              traceId: '1-654df270-542f27b5043037737685631b',
+            },
+            {
+              component: '/na3/interaction_17.0',
+              logStream: 'int1013.na3.va2.livevox.net',
+              threadName: 'http-nio-8080-exec-465',
+              message: [
+                'GET /interaction_17.0/conference/external/notification?customerSessionId=U89DDT654DF192@10.124.21.138&externalSessionId=U27DC0T654DF193@10.124.21.202&notifiedSessionId=U27DC0T654DF193@10.124.21.202&conferenceUrl=http%3A%2F%2F10.124.25.81%3A8085%2FConference%2FU27C4CT654DF197&status=hangup HTTP/1.1',
+              ],
+              traceId: 'NO_TRACE_ID',
+            },
+            {
+              component: '/na3/interaction_17.0',
+              logStream: 'int1025.na3.va2.livevox.net',
+              threadName: 'http-nio-8080-exec-393',
+              message: [
+                'GET /interaction_17.0/conference/external/notification?customerSessionId=U89DDT654DF192@10.124.21.138&externalSessionId=U27DC0T654DF193@10.124.21.202&notifiedSessionId=U89DDT654DF192@10.124.21.138&conferenceUrl=http%3A%2F%2F10.124.25.81%3A8085%2FConference%2FU27C4CT654DF197&status=hangup HTTP/1.1',
+              ],
+              traceId: 'NO_TRACE_ID',
+            },
+            {
+              component: '/na3/interaction_17.0',
+              logStream: 'int1015.na3.va2.livevox.net',
+              threadName: 'pool-22-thread-5',
+              message: [
+                '158742250077 AcctSuccess Task has completed execution',
+                '158742250077 QueuerDecrement Task started execution',
+                '158742250077 End Transfer task execution started',
+              ],
+              traceId: '1-654df270-4c33182fe1eb868a112bea5d',
+            },
+            {
+              component: '/na3/ACD_17.0',
+              logStream: 'acd1055.na3.va2.livevox.net',
+              threadName: 'http-nio-8080-exec-219',
+              message: [
+                ' Handling termination for call with session id 126573 in skill id U89DDT654DF192@10.124.21.138',
+                ' Call with session id U89DDT654DF192@10.124.21.138 is not found in shared memory',
+                ' Error trying to end call with session id U89DDT654DF192@10.124.21.138 for skill 126573 : ccbs.failed_no_call',
+              ],
+              traceId: '1-654df270-4c33182fe1eb868a112bea5d',
+            },
+            {
+              component: '/na3/interaction_17.0',
+              logStream: 'int1015.na3.va2.livevox.net',
+              threadName: 'pool-21-thread-69',
+              message: ['158742250077 End Transfer task execution completed'],
+              traceId: '1-654df270-4c33182fe1eb868a112bea5d',
+            },
+            {
+              component: '/na3/ACD_17.0',
+              logStream: 'acd1055.na3.va2.livevox.net',
+              threadName: 'http-nio-8080-exec-219',
+              message: [
+                'GET /agent/EndDebtorCall?sessionID=U89DDT654DF192@10.124.21.138&client_id=126573 HTTP/1.1',
+              ],
+              traceId:
+                'Root=1-654df270-4c33182fe1eb868a112bea5d;Parent=6378253accc6a2e1;Sampled=0',
+            },
+            {
+              component: '/na3/interaction_17.0',
+              logStream: 'int1015.na3.va2.livevox.net',
+              threadName: 'ResultsLogWorker',
+              message: [
+                '158742250077,,,,126573,,,,,,1699606930,1699606930,1699607152,221,Inbound - person,476-C-external_transfer-,3233090653,U89DDT654DF192@10.124.21.138,,,,,,,,,,,,,,,,,,,,,,1699606930,221,1,acd,,,126573_CALLBACK_CALLS_11-10-2023,,,,0,0,221,OperatorHangupWhileTalking,,,,,8882675248,,126573,,,,,,,,,,,,,,,,0,0,0,0,0,0,0,108667305,,,8339322075,,,,,,,%7B%7D,,,,,,,,,,,,,,',
+                'Txn: 158742250077 Skill: 126573 Ses: U89DDT654DF192@10.124.21.138 Campaign: 108667305  RuleSet : A_MASTER_results_mapping.xls  rule applied : unified',
+                'Txn: 158742250077 Tfh_result was successfully changed from null to Operator Transfer ',
+                'Txn: 158742250077 Skill: 126573 base: 12 inc: 6',
+                "Txn: 158742250077 Skill: 126573 TFH_RESULT: 'Operator Transfer'  CBC1: 'null'  CBC2: 'null' CBC3: 'null'",
+                'PDAS events to post: [{"sessionId":"U89DDT654DF192@10.124.21.138","accountTransactionId":158742250077,"clientId":10900,"callCenterId":9416,"serviceId":126573,"campaignId":108667305,"phone":"3233090653","transferResult":"OperatorHangupWhileTalking","duration":221,"holdDuration":221,"service":"126573","callCenter":"9416","start":1699606930000,"end":1699607152000,"campaignTypeId":3,"answerType":"Inbound - person","callType":"acd","finalState":"476-C-external_transfer-","lvResult":"Operator Transfer","lvResultId":476,"tfhResult":"Operator Transfer","tfhResultId":476,"areaCodeState":"CA","callEventType":"CALL_TERMINATION","operatorPhone":"8882675248","campaignType":"INBOUND","callerId":"8339322075","customOutcome1":"599","transferHoldDuration":221,"phoneDialed":"3233090653"}]',
+                '158742250077 -- Interaction JSON = {}',
+              ],
+              traceId: 'NO_TRACE_ID',
+            },
+          ],
+        },
+      };
+      console.log(data);
+
+      function createLogEntries() {
+        const logEntries = d3
+          .select('body')
+          .selectAll('div')
+          .data(data.dataObj.data)
+          .enter()
+          .append('div')
+          .style('border', '1px solid #ccc')
+          .style('margin', '10px')
+          .style('padding', '10px');
+
+        logEntries.html(
+          (d, i) => `
+        <p><strong>Component:</strong> ${d.component}</p>
+        <p><strong>Log Stream:</strong> ${d.logStream}</p>
+        <p><strong>Thread Name:</strong> ${d.threadName}</p>
+        <p><strong>Trace ID:</strong> ${d.traceId}</p>
+        <p><strong>Message:</strong></p>
+        <ul>${d.message.map((msg) => `<li>${msg}</li>`).join('')}</ul>
+      `
+        );
+      }
+
+      // Function to create a bar chart
+      function createBarChart() {
+        const chartData = {
+          labels: data.dataObj.data.map(
+            (d, i) => `${d.component}(${d.logStream})`
+          ),
+          datasets: [
+            {
+              label: 'Number of Messages',
+              backgroundColor: 'rgba(75, 192, 192, 0.2)',
+              borderColor: 'rgba(75, 192, 192, 1)',
+              borderWidth: 1,
+              data: data.dataObj.data.map((d) => d.message.length),
+            },
+          ],
+        };
+
+        const allMessages = data.dataObj.data.flatMap((d) => d.message);
+
+        const chartOptions = {
+          scales: {
+            y: {
+              beginAtZero: true,
+            },
+          },
+          onClick: function (event, elements) {
+            if (elements.length > 0) {
+              const dataIndex = elements[0].index;
+              const message = allMessages[dataIndex];
+              displayPopup(message);
+            }
+          },
+        };
+
+        const ctx = document.getElementById('myChart').getContext('2d');
+        const myChart = new Chart(ctx, {
+          type: 'bar',
+          data: chartData,
+          options: chartOptions,
+        });
+      }
+
+      // Function to display messages in a popup
+      function displayPopup(message) {
+        const popup = document.getElementById('popup');
+        popup.innerHTML = `<p><strong>Clicked Message:</strong></p><p>${message}</p>`;
+        popup.style.display = 'block';
+      }
+
+      document.addEventListener('DOMContentLoaded', function () {
+        createLogEntries();
+        createBarChart();
+      });
+    </script>
+    <canvas id="myChart" width="400" height="200"></canvas>
+  </body>
+</html>
